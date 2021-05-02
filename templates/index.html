@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission to Mars</title>
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="jumbotron">Mission to Mars</h1>
+        <p>See Mars as you've never seen before!</p>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Browse!</a></p>
+        <div>
+            <!--Loop through dictionary-->
+            {% for element in hemispheres_field %}
+            <div class="col-lg-4">
+                <div class="card" style= "width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title"> {{ hemispheres.title }}</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Hemisphere Image<img src= "{{ hemispheres.img_url }}"></h6>
+                        <p class="card-text">Mars Website<a href="https://marshemispheres.com/"></a></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    
+</body>
+</html>
