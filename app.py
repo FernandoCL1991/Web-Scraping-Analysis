@@ -7,10 +7,21 @@ app = Flask(__name__)
 
 
 
-# MONGO HERE! ######## REVISAR!
 
+#################### MONGO SETUP ####################
+# Importing pymongo
+import pymongo
+# Creating connection to local host
+conn = "mongodb://localhost:27017"
+client = pymongo.MongoClient(conn)
+# Creating DB
+db = client.mars_website_db
+# Creating collection inside the DB
+all_hemispheres_dict= db.all_hemispheres_dict
+#######################################################BORRAR EL DROP ANTES DE SUBIR
+mongo.db.collection.drop()
+####
 
-########## REVISAR! USAR MONGO !!
 
 
 
