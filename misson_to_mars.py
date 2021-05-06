@@ -48,16 +48,6 @@ def news_title(browser):
     # Closing function difining: news_title
     return title
 
-
-# In[4]:
-
-
-news_title(browser)
-
-
-# In[5]:
-
-
 # Defining a function to the result of the scrape: news_p
 
 def news_p(browser):
@@ -139,6 +129,7 @@ def mars_facts(browser):
     mars_facts_df_cols = ['Mars-Earth Comparisson', 'Mars', 'Earth']
     mars_facts_df.columns = mars_facts_df_cols
     mars_facts_df.drop(labels=[0], axis= 0, inplace=True)
+    mars_facts_dict = mars_facts_df.to_dict(orient='record')
 
     # Closing function difining: mars_facts
     return mars_facts_df

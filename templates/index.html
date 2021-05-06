@@ -1,32 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Styling-->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <!--Rest of Head-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="data:,"> <!-- ADDED THIS AS PER  STACK OVERFLOW-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Title-->
     <title>Mission to Mars</title>
 </head>
+
 <body>
-    <div class="container text-center">
-        <h1 class="jumbotron">Mission to Mars</h1>
-        <p>See Mars as you've never seen before!</p>
-        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Browse!</a></p>
-        <div>
-            <!--Loop through dictionary-->
-            {% for element in hemispheres_field %}
-            <div class="col-lg-4">
-                <div class="card" style= "width: 20rem;">
-                    <div class="card-body">
-                        <h4 class="card-title"> {{ hemispheres.title }}</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Hemisphere Image<img src= "{{ hemispheres.img_url }}"></h6>
-                        <p class="card-text">Mars Website<a href="https://marshemispheres.com/"></a></p>
-                    </div>
+    <div class="container">
+
+        <!--HEADER BOX-->
+        <div class="jumbotron text-center">
+            <header class="header">
+                <h1>Mission to Mars</h1>
+                <p>See Mars as you've never seen before!</p>
+                <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Browse!</a></p>
+            </header>
+        </div>
+
+        <!--FEATURED IMAGE-->
+        <div class="row" id="mars-featured-image">
+            <div class="col-md-6">
+                <h2>Featured Mars Image</h2>
+                <!-- if images is False/None/non-existent, then default to error message -->
+                <img src="{{mars_data.current_img_url | default('static/images/error.png', true) }}"
+                    class="img-responsive" alt="Responsive image" />
+            </div>
+            <!--FACTS TABLE-->
+            <div class="col-md-6">
+                <h2>Know more about Mars</h2>
+                <!-- if images is False/None/non-existent, then default to error message -->
+                <div>{{ mars_table }}</div>
+            </div>
+        </div>
+
+        <!--Looping through dictionary to retrieve data for each card-->
+        {% for element in mars_data.all_hemispheres_dict %}
+        <div class="col-md-3">
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h4 class="mars.facts"></h4>
+                    {{ mars_data.hemispheres }}
+                    <h6 class="card-subtitle mb-2 text-muted">Hemisphere Image<img src={{ element.hemispheres }}></h6>
+                       <p class="card-text">Mars Website<a href="https://marshemispheres.com/"></a></p>
                 </div>
             </div>
-            {% endfor %}
-
         </div>
+        {% endfor %}
+
     </div>
-    
+
+
+    <!-- Java Script -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>

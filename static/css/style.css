@@ -1,0 +1,23 @@
+/* <<<<<<<<<< BODY >>>>>>>>>>  */
+body {
+    background-color: rgb(208, 208, 126);
+}
+
+/* <<<<<<<<<< JUMBOTRON >>>>>>>>>> */
+.jumbotron text-center {
+    color:cadetblue;
+    text-align: center;
+}
+.jumbotron text-center h1 {
+    font-size: 80px;
+    color: black;
+}
+p {
+    font-size: 50px;
+}
+
+/* <<<<<<<<<< BUTTON >>>>>>>>>> */
+.btn btn-primary btn-lg {
+    background-color: #e7e7e7; 
+    color: black;
+}

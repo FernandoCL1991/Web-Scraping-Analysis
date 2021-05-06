@@ -1,61 +1,46 @@
-from flask import Flask, render_template, rediret
+#################### DEPENDENCIES #####################
+from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
 import scrape_mars
+import pandas as pd
 
-# Flask
-app = Flask(__name__)
-
-
-
-
-#################### MONGO SETUP ####################
+##################### MONGO SETUP #####################
 # Importing pymongo
 import pymongo
-# Creating connection to local host
+# Flask
+app = Flask(__name__)
+# Creating connection variable to local host
 conn = "mongodb://localhost:27017"
 client = pymongo.MongoClient(conn)
 # Creating DB
 db = client.mars_website_db
 # Creating collection inside the DB
 all_hemispheres_dict= db.all_hemispheres_dict
-#######################################################BORRAR EL DROP ANTES DE SUBIR
-mongo.db.collection.drop()
-####
 
 
 
-
+################### CREATING ROUTES ####################
 
 ## Home route
 @app.route("/")
 def index():
-    # Find one record of data from mongo database
-    hemisphere_image_urls = mongo.db.collection.find_one()
+    # Find one record of data from mongo database , JSON
+    mars_data = db.mars.data.find_one()
+    # Find one record of data from mongo database , HTML
+    table = pd.DataFrame(mars_data["mars_facts"])
     # Return rendered list of dictionaries
-    return render_template("index.html", hemispheres=hemisphere_image_urls)
+    return render_template("index.html", mars_data=mars_data, mars_table=table.to_html())
 
 
 ## Scrape route
 @app.route("/scrape")
 def scrape():
     # Running the scrape function and passing results as a variable
-    hemisphere_image_urls=scrape_mars.scrape_info()
-
+    hemispheres_data=scrape_mars.scrape()
     # upsert=True if info is updated
-    mongo.db.collection.update({}, hemispheres_data, upsert= True)
-
+    db.mars.data.update({}, hemispheres_data, upsert= True)
     # Redirecting back to home page
     return redirect ("/")
-
-
-
-
-
-############ USE THIS????
-    #hemispheres = mongo.db.hemispheres
-    #hemispheres_data = scrape_mars.scrape()
-    
-    #return redirect("/", code=302)
 
 
 if __name__ == "__main__":
