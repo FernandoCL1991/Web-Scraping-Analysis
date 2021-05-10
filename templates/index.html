@@ -10,56 +10,62 @@
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
     <!--Rest of Head-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="data:,"> <!-- ADDED THIS AS PER  STACK OVERFLOW-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Title-->
-    <title>Mission to Mars</title>
+    <title>The Mars Website</title>
 </head>
 
 <body>
-    <div class="container">
-
-        <!--HEADER BOX-->
-        <div class="jumbotron text-center">
-            <header class="header">
-                <h1>Mission to Mars</h1>
-                <p>See Mars as you've never seen before!</p>
-                <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Browse!</a></p>
-            </header>
-        </div>
-
-        <!--FEATURED IMAGE-->
-        <div class="row" id="mars-featured-image">
-            <div class="col-md-6">
-                <h2>Featured Mars Image</h2>
-                <!-- if images is False/None/non-existent, then default to error message -->
-                <img src="{{mars_data.current_img_url | default('static/images/error.png', true) }}"
-                    class="img-responsive" alt="Responsive image" />
+    <div id="grad1">
+        <div class="container">
+            <!--HEADER BOX-->
+            <div class="jumbotron text-center">
+                <header class="header">
+                    <h1>The Mars Website</h1>
+                    <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Click to browse!</a></p>
+                </header>
             </div>
-            <!--FACTS TABLE-->
-            <div class="col-md-6">
-                <h2>Know more about Mars</h2>
-                <!-- if images is False/None/non-existent, then default to error message -->
-                <div>{{ mars_table }}</div>
-            </div>
-        </div>
-
-        <!--Looping through dictionary to retrieve data for each card-->
-        {% for element in mars_data.all_hemispheres_dict %}
-        <div class="col-md-3">
-            <div class="card" style="width: 20rem;">
-                <div class="card-body">
-                    <h4 class="mars.facts"></h4>
-                    {{ mars_data.hemispheres }}
-                    <h6 class="card-subtitle mb-2 text-muted">Hemisphere Image<img src={{ element.hemispheres }}></h6>
-                       <p class="card-text">Mars Website<a href="https://marshemispheres.com/"></a></p>
+            <br>
+            <!--FEATURED IMAGE-->
+            <div class="row" id="mars-featured-image">
+                <div class="col-md-6">
+                    <h2>Featured Mars Image</h2>
+                    <!-- if images is False/None/non-existent, then default to error message -->
+                    <img src="{{mars_data.current_img_url | default('static/images/error.png', true) }}"
+                        class="img-fluid" alt="Responsive image" />
                 </div>
+                <!--FACTS TABLE-->
+                <div class="col-md-6">
+                    <h2>Know more about Mars</h2>
+                    <div>{{ mars_table | safe }}</div>
+                </div>
+
+            </div>
+            <br>
+            <br>
+            <br>
+            <!--HEMISPHERE CARDS WITH FOR LOOP-->
+            <div class="row" id="mars-featured-image">
+                {% for element in mars_data.all_hemispheres_dict %}
+                <div class="col-md-6">
+                    <div class="card" style="width: 20rem;">
+                        <div class="card-body">
+                            <h4 class="mars.facts"></h4>
+                            <h5 class="card-subtitle mb-2 text-muted">{{ element.title }}<img src={{ element.img_url }}
+                                    class="img-fluid">
+                            </h5>
+                            <p class="card-text"><a href="https://marshemispheres.com/">
+                                    <h6>Source</h6>
+                                </a></p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
-
     </div>
-
 
     <!-- Java Script -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

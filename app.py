@@ -24,12 +24,15 @@ all_hemispheres_dict= db.all_hemispheres_dict
 ## Home route
 @app.route("/")
 def index():
-    # Find one record of data from mongo database , JSON
-    mars_data = db.mars.data.find_one()
-    # Find one record of data from mongo database , HTML
-    table = pd.DataFrame(mars_data["mars_facts"])
-    # Return rendered list of dictionaries
-    return render_template("index.html", mars_data=mars_data, mars_table=table.to_html())
+    try:
+        # Find one record of data from mongo database , JSON
+        mars_data = db.mars.data.find_one()
+        # Find one record of data from mongo database , HTML
+        table = pd.DataFrame(mars_data["mars_facts"])
+        # Return rendered list of dictionaries
+        return render_template("index.html", mars_data=mars_data, mars_table=table.to_html())
+    except:
+        return render_template("index.html", mars_data={}, mars_table="")
 
 
 ## Scrape route

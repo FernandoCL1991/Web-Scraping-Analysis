@@ -1,9 +1,18 @@
-/* <<<<<<<<<< BODY >>>>>>>>>>  */
-body {
-    background-color: rgb(208, 208, 126);
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< TOP >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/* Header: The Mars Website */
+h1 {
+    font-size: 65px;
+}
+/* Header: Button */
+.btn btn-primary btn-lg {
+    background-color: #e7e7e7; 
+    color: black;
 }
 
-/* <<<<<<<<<< JUMBOTRON >>>>>>>>>> */
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< WHOLE BODY >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/* Jumbotron */
 .jumbotron text-center {
     color:cadetblue;
     text-align: center;
@@ -16,8 +25,34 @@ p {
     font-size: 50px;
 }
 
-/* <<<<<<<<<< BUTTON >>>>>>>>>> */
-.btn btn-primary btn-lg {
-    background-color: #e7e7e7; 
-    color: black;
+#grad {
+    background-color: linear-gradient(rgb(208, 208, 126), rgb(122, 122, 90));
 }
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< BODY: MIDDLE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/* Featured Image */
+h2 {
+    text-align: center;
+}
+
+/* <<<<<<<<<< CARD TITLE >>>>>>>>>> */
+h4 {
+    font-size: 20px;
+    text-align: center;
+}
+/* <<<<<<<<<< CARD TITLE: Hemisphere Name >>>>>>>>>> */
+h5 {
+    font-size: 20px;
+    text-align: center;
+}
+/* <<<<<<<<<< CARD: Source >>>>>>>>>> */
+h6 {
+    font-size: 20px;
+    text-align: center;
+}
+
+
+
+
+
